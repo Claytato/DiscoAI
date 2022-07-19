@@ -6,14 +6,14 @@ import cv2
 from tflite_support.task import core
 from tflite_support.task import processor
 from tflite_support.task import vision
-import utils
+import label
 
-  # model: Name of the TFLite object detection model.
-  # camera_id: The camera id to be passed to OpenCV.
-  # width: The width of the frame captured from the camera.
-  # height: The height of the frame captured from the camera.
-  # num_threads: The number of CPU threads to run the model.
-  # enable_edgetpu: True/False whether the model is a EdgeTPU model.
+# model: Name of the TFLite object detection model.
+# camera_id: The camera id to be passed to OpenCV.
+# width: The width of the frame captured from the camera.
+# height: The height of the frame captured from the camera.
+# num_threads: The number of CPU threads to run the model.
+# enable_edgetpu: True/False whether the model is a EdgeTPU model.
     
 def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
         enable_edgetpu: bool) -> None:
@@ -65,7 +65,7 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
     detection_result = detector.detect(input_tensor)
 
     # Draw keypoints and edges on input image
-    image = utils.visualize(image, detection_result)
+    image = label.visualize(image, detection_result)
 
     # Calculate the FPS
     if counter % fps_avg_frame_count == 0:
