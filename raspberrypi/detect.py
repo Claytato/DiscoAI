@@ -7,7 +7,7 @@ from tflite_support.task import core
 from tflite_support.task import processor
 from tflite_support.task import vision
 import label
-
+ 
 # model: Name of the TFLite object detection model.
 # camera_id: The camera id to be passed to OpenCV.
 # width: The width of the frame captured from the camera.
