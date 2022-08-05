@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
+import time
 from tflite_support.task import processor
+from twilio.rest import Client 
 
 _MARGIN = 10  # pixels
 _ROW_SIZE = 10  # pixels
@@ -26,8 +28,23 @@ def visualize(
     class_name = category.class_name
     probability = round(category.score, 2)
     if class_name == 'person':
-        if probability > 0.50:
+        if probability > 0.80:
           print("person")
+          
+          account_sid = 'ACaeb61217c51f11c2655ecbd9a9c2f0fc' 
+          auth_token = '[AuthToken]' 
+          client = Client(account_sid, auth_token) 
+          
+          message = client.messages.create(  
+                                        messaging_service_sid='MGcc5e54c0df3f1d8ca17e5abe57ac94ec', 
+                                        body='Person Detected!!!',      
+                                        to='+14192174630' 
+                                    ) 
+          
+          print(message.sid)
+          
+          time.sleep(10)
+          
     result_text = class_name + ' (' + str(probability) + ')'
     text_location = (_MARGIN + bbox.origin_x,
                      _MARGIN + _ROW_SIZE + bbox.origin_y)
