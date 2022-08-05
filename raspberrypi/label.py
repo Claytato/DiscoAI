@@ -32,7 +32,7 @@ def visualize(
           print("person")
           
           account_sid = 'ACaeb61217c51f11c2655ecbd9a9c2f0fc' 
-          auth_token = '[AuthToken]' 
+          auth_token = '97f4077ad0a37263c97073093a0f0aea' 
           client = Client(account_sid, auth_token) 
           
           message = client.messages.create(  
@@ -43,7 +43,7 @@ def visualize(
           
           print(message.sid)
           
-          time.sleep(10)
+          time.sleep(60)
           
     result_text = class_name + ' (' + str(probability) + ')'
     text_location = (_MARGIN + bbox.origin_x,
