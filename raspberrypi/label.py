@@ -3,6 +3,7 @@ import numpy as np
 import time
 from tflite_support.task import processor
 from twilio.rest import Client 
+from picamera import PiCamera
 
 _MARGIN = 10  # pixels
 _ROW_SIZE = 10  # pixels
@@ -40,7 +41,10 @@ def visualize(
                                         body='Person Detected!!!',      
                                         to='+14192174630' 
                                     ) 
-          
+          camera = PiCamera()
+          time.sleep(2)
+          camera.capture('../pictures/img.jpg')
+
           print(message.sid)
           
           time.sleep(60)
